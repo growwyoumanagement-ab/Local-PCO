@@ -1,0 +1,17 @@
+import api from "./api";
+
+export interface DashboardStats {
+    totalPartners: number;
+    totalClients: number;
+    totalBookings: number;
+    activeBookings: number;
+    totalRevenue: number;
+    recentBookings: any[];
+}
+
+export const dashboardService = {
+    getStats: async (): Promise<DashboardStats> => {
+        const response = await api.get("/admin/stats");
+        return response.data.data;
+    },
+};

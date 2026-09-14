@@ -1,0 +1,26 @@
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Expo / EAS
+.expo/
+eas.json
+
+# Android
+local.properties
+android/local.properties
+android/.gradle/
+android/app/build/
+android/build/
+.gradle/
+build/
+
+# Google Services (contains API keys)
+google-services.json
+GoogleService-Info.plist
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,17 @@
+{
+  "baseUrl": "http://localhost:5000/api/v1",
+  "clientCredentials": {
+    "phone": "9999911111",
+    "password": "password123",
+    "id": "6a74f54e022fccc12ba96ca0"
+  },
+  "partnerCredentials": {
+    "phone": "9999922222",
+    "password": "password123",
+    "id": "6a74f54e022fccc12ba96ca6"
+  },
+  "serviceCategory": {
+    "id": "6a74f544fe876f282e7270a4",
+    "name": "Plumbing Services"
+  }
+}

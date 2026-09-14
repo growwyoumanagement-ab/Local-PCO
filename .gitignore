@@ -1,0 +1,16 @@
+# Build output
+.tmp/
+node_modules/
+*.log
+
+# Environment files
+.env
+
+# EAS / Expo
+.expo/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db

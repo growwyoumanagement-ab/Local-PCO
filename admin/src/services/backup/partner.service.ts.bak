@@ -1,0 +1,53 @@
+import api from "./api";
+
+export interface Partner {
+    _id: string; // Backend uses _id
+    name: string;
+    email: string;
+    phone: string;
+    avatar?: string;
+    serviceCategory: string;
+    kycStatus: "pending" | "approved" | "rejected";
+    isActive: boolean;
+    isOnline: boolean;
+    address?: {
+        city: string;
+        pincode: string;
+    };
+    bankDetails?: {
+        accountHolderName: string;
+        accountNumber: string;
+        bankName: string;
+        ifsc: string;
+    };
+    createdAt: string;
+}
+
+export const partnerService = {
+    getAllPartners: async (): Promise<Partner[]> => {
+        const response = await api.get("/admin/partners");
+        return response.data.data;
+    },
+
+    getPartnerById: async (id: string): Promise<Partner> => {
+        // Falling back to the partner specific route if admin detail route is not separate, 
+        // or just filtering from list if needed, but ideally we should have a detail route.
+        // For now using the partner route might return 403 if not logged in as that partner.
+        // So we should rely on the admin list or create an admin detail route.
+        // Let's assume for now we just use the list or add a detail endpoint if needed.
+        // Current AdminController doesn't have getById, so we might need to add it or just use list.
+        const response = await api.get("/admin/partners");
+        const partner = response.data.data.find((p: Partner) => p._id === id);
+        return partner;
+    },
+
+    verifyKyc: async (id: string, status: "approved" | "rejected") => {
+        const response = await api.put(`/admin/partners/${id}/kyc`, { status });
+        return response.data.data;
+    },
+
+    toggleStatus: async (id: string, isActive: boolean) => {
+        const response = await api.put(`/admin/partners/${id}/status`, { isActive });
+        return response.data.data;
+    }
+};

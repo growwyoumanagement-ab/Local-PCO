@@ -1,0 +1,27 @@
+import api from "./api";
+
+export interface Booking {
+    _id: string;
+    userId: {
+        _id: string;
+        name: string;
+        email: string;
+    };
+    partnerId: {
+        _id: string;
+        name: string;
+        serviceCategory: string;
+    };
+    serviceType: string;
+    status: "pending" | "accepted" | "in_progress" | "completed" | "cancelled" | "rejected";
+    bookingDate: string; // or scheduledDate
+    finalCharges: number;
+    createdAt: string;
+}
+
+export const bookingService = {
+    getAllBookings: async (): Promise<Booking[]> => {
+        const response = await api.get("/admin/bookings");
+        return response.data.data;
+    }
+};
