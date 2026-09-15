@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { GlowButton } from "./ui/GlowButton";
-import { cn } from "../lib/utils";
+import { Menu, X, ArrowRight, MapPin } from "lucide-react";
+import { ADMIN_PORTAL_URL } from "../config/constants";
 
-export function Navbar() {
+export function Navbar({ onOpenClientModal, onOpenPartnerModal }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -17,98 +16,138 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "Field Execution", href: "#execution" },
-    { name: "Photo Proof", href: "#photo-proof" },
-    { name: "Earnings & Payout", href: "#earnings" },
-    { name: "Partner App", href: "#download" },
+    { name: "How it works", href: "#how-it-works" },
+    { name: "Services", href: "#services" },
+    { name: "For Partners", href: "#partners" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "Support", href: "#pricing" },
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        isScrolled ? "bg-[rgba(8,12,20,0.85)] backdrop-blur-md border-b border-[#1E2D42] py-4" : "bg-transparent py-6"
-      )}
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E8E4DA] py-3.5 shadow-sm"
+          : "bg-transparent py-5"
+      }`}
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <img src="/logo.png" alt="Local PCO Logo" className="h-10 w-auto object-contain rounded-lg shadow-sm" />
+          {/* Brand Logo */}
+          <a href="#" className="flex items-center gap-2.5 group">
+            <img
+              src="/logo.png"
+              alt="Local PCO Logo"
+              className="w-8 h-8 md:w-9 md:h-9 object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="font-serif-display text-xl sm:text-2xl font-bold tracking-tight text-[#0E382C] leading-none">
+              Local PCO
+            </span>
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-[#8FA3BF] hover:text-white transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <GlowButton 
-                href="/admin" 
-                variant="secondary"
-                size="sm"
-                className="hidden lg:flex"
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium text-[#526058] hover:text-[#0E382C] transition-colors"
               >
-                Operations Login
-              </GlowButton>
-            </div>
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Actions */}
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href={ADMIN_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-[#526058] hover:text-[#0E382C] transition-colors px-2 py-1"
+            >
+              Sign in
+            </a>
+
+            <button
+              onClick={onOpenClientModal}
+              className="inline-flex items-center gap-2 bg-[#0E382C] hover:bg-[#165342] text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow cursor-pointer"
+            >
+              <span>Get started</span>
+              <ArrowRight size={14} />
+            </button>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden text-white p-2"
+          <button
+            className="md:hidden text-[#1B2620] p-2 rounded-lg hover:bg-[#EFECE3] transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav Drawer */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#0F1623] border-b border-[#1E2D42] overflow-hidden"
+            className="md:hidden bg-[#FAF8F5] border-b border-[#E8E4DA] shadow-lg overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-6 flex flex-col gap-6">
-              <div className="flex flex-col gap-4">
+            <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+              <nav className="flex flex-col gap-3">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-medium text-[#8FA3BF] hover:text-white transition-colors"
+                    className="text-base font-medium text-[#1B2620] hover:text-[#0E382C] py-1 border-b border-[#F0ECE4]"
                   >
                     {link.name}
                   </a>
                 ))}
-                <GlowButton 
-                  href="/admin" 
-                  variant="secondary"
-                  size="md"
-                  fullWidth
-                  onClick={() => setMobileMenuOpen(false)}
+              </nav>
+
+              <div className="pt-2 flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenClientModal?.();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 bg-[#0E382C] text-white font-semibold py-3 rounded-full shadow-sm text-sm"
                 >
-                  Operations Login
-                </GlowButton>
+                  <span>Find a service</span>
+                  <ArrowRight size={15} />
+                </button>
+
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenPartnerModal?.();
+                  }}
+                  className="w-full py-2.5 text-center text-sm font-semibold text-[#0E382C] border border-[#E8E4DA] rounded-full bg-white hover:bg-[#F4F1EA]"
+                >
+                  Become a partner
+                </button>
+
+                <a
+                  href={ADMIN_PORTAL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full py-2 text-center text-xs font-semibold text-[#526058] hover:text-[#0E382C]"
+                >
+                  Operations Login →
+                </a>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </header>
   );
 }

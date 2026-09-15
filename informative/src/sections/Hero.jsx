@@ -1,164 +1,224 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Navigation, Camera, Wallet, ShieldCheck, ArrowRight, Play } from "lucide-react";
-import { GlowButton } from "../components/ui/GlowButton";
+import { ArrowRight, ShieldCheck, CreditCard, MapPin, Headphones, Star } from "lucide-react";
 
-export function Hero() {
-  const workflowFeatures = [
-    { icon: <CheckCircle2 size={16} className="text-emerald-400" />, text: "Instant Job Broadcast" },
-    { icon: <Navigation size={16} className="text-blue-400" />, text: "Live Route Navigation" },
-    { icon: <Camera size={16} className="text-amber-400" />, text: "Photo Proof Completion" },
-    { icon: <Wallet size={16} className="text-emerald-400" />, text: "Fast Bank Payouts" },
-    { icon: <ShieldCheck size={16} className="text-indigo-400" />, text: "Verified Partner Network" }
-  ];
-
+export function Hero({ onOpenClientModal, onOpenPartnerModal }) {
   return (
-    <section className="relative min-h-[92vh] pt-32 pb-20 flex items-center overflow-hidden bg-[#080C14]">
-      {/* Subtle grid pattern & operational backdrop */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
-      
-      {/* Calm ambient brand glow */}
-      <div className="absolute top-1/4 -left-[10%] w-[40vw] h-[40vw] rounded-full bg-emerald-600 opacity-[0.07] blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 -right-[10%] w-[35vw] h-[35vw] rounded-full bg-teal-500 opacity-[0.05] blur-[120px] pointer-events-none"></div>
+    <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 bg-[#FAF8F5] overflow-hidden">
+      {/* Ambient background warmth */}
+      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full bg-[#EBF1ED]/80 blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/4 -left-[10vw] w-[30vw] h-[30vw] rounded-full bg-[#F2EFEB]/90 blur-[100px] pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* Main Copy */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-7 flex flex-col gap-6"
-          >
-            <div>
-              {/* Supporting Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 mb-6">
-                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-                <span className="text-xs font-semibold text-emerald-400 tracking-wide uppercase">
-                  From job assignment to payout
-                </span>
+          {/* ================= LEFT COLUMN: EDITORIAL COPY ================= */}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            {/* Kicker tag */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 mb-4"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0E382C]"></span>
+              <span className="text-[11px] font-sans font-bold tracking-[0.14em] uppercase text-[#4E715E]">
+                Trusted professionals. Happier homes.
+              </span>
+            </motion.div>
+
+            {/* Main Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl sm:text-5xl md:text-6xl xl:text-[68px] font-serif-display font-normal text-[#1B2620] leading-[1.02] tracking-tight mb-5"
+            >
+              Your home. <br />
+              Your people. <br />
+              <span className="text-[#0E382C]">Connected.</span>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-sm sm:text-base text-[#526058] font-light leading-relaxed max-w-lg mb-7"
+            >
+              Book trusted local professionals, or turn your next service job into your next opportunity — all through one connected network.
+            </motion.p>
+
+            {/* Dual CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap items-center gap-3 mb-8"
+            >
+              <button
+                onClick={onOpenClientModal}
+                className="inline-flex items-center gap-2.5 bg-[#0E382C] hover:bg-[#165342] text-white text-sm font-semibold px-6 py-3.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group"
+              >
+                <span>Find a service</span>
+                <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+
+              <button
+                onClick={onOpenPartnerModal}
+                className="inline-flex items-center gap-2 bg-white hover:bg-[#F4F1EA] text-[#1B2620] text-sm font-semibold px-6 py-3.5 rounded-full border border-[#E8E4DA] transition-all duration-300 shadow-sm hover:shadow cursor-pointer"
+              >
+                <span>Become a partner</span>
+              </button>
+            </motion.div>
+
+            {/* Trust Row (2x2 grid) */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid grid-cols-2 gap-y-3 gap-x-4 pt-6 border-t border-[#E8E4DA] max-w-md"
+            >
+              <div className="flex items-center gap-2 text-xs text-[#526058]">
+                <ShieldCheck size={15} className="text-[#0E382C] shrink-0" />
+                <span className="font-medium text-[#1B2620]">Verified Professionals</span>
               </div>
-              
-              {/* Primary Headline */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.15] mb-6">
-                Your workday, <br />
-                <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 bg-clip-text text-transparent">
-                  connected.
-                </span>
-              </h1>
-              
-              {/* Supporting Copy */}
-              <p className="text-lg md:text-xl text-[#8FA3BF] max-w-xl leading-relaxed">
-                Local PCO connects service partners with real-time bookings, guides every job from assignment to completion, and keeps proof, earnings, and payouts in one place.
-              </p>
-            </div>
+              <div className="flex items-center gap-2 text-xs text-[#526058]">
+                <CreditCard size={15} className="text-[#0E382C] shrink-0" />
+                <span className="font-medium text-[#1B2620]">Secure Payments</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-[#526058]">
+                <MapPin size={15} className="text-[#0E382C] shrink-0" />
+                <span className="font-medium text-[#1B2620]">Real-time Tracking</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-[#526058]">
+                <Headphones size={15} className="text-[#0E382C] shrink-0" />
+                <span className="font-medium text-[#1B2620]">24/7 Dedicated Support</span>
+              </div>
+            </motion.div>
+          </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <GlowButton href="#download" variant="primary" size="lg" className="flex items-center gap-2">
-                <span>Get started</span>
-                <ArrowRight size={18} />
-              </GlowButton>
-              <GlowButton href="#how-it-works" variant="secondary" size="lg" className="flex items-center gap-2">
-                <Play size={16} className="fill-current" />
-                <span>See how it works</span>
-              </GlowButton>
-            </div>
-
-            {/* Micro reassurance */}
-            <p className="text-xs text-zinc-400 font-medium">
-              Purpose-built for technicians, electricians, plumbers, cleaners, and field specialists.
-            </p>
-          </motion.div>
-
-          {/* Operational Mock UI Visual */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+          {/* ================= RIGHT COLUMN: INTEGRATED PHOTO COMPOSITION ================= */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="lg:col-span-5 relative"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-7 relative"
           >
-            <div className="relative mx-auto max-w-md space-y-4">
-              
-              {/* Card 1: Job Broadcast Notification */}
-              <div className="bg-[#0F1623] border border-emerald-500/30 rounded-2xl p-5 shadow-2xl shadow-black/60 relative overflow-hidden">
-                <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400"></div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wide bg-emerald-500/20 text-emerald-300">
-                      New Request
+            <div className="relative rounded-3xl overflow-hidden border border-[#E8E4DA] bg-white editorial-shadow-lg aspect-[16/11] sm:aspect-[16/10] lg:aspect-[4/3] xl:aspect-[16/11] max-h-[580px] w-full">
+              {/* Main Photo: Client on couch (left), foyer (center), Technician at door (right) */}
+              <img
+                src="/images/hero-connected.jpg"
+                alt="Local PCO connecting homeowner and service partner"
+                className="w-full h-full object-cover object-center"
+              />
+
+              {/* Connecting Green Route SVG Line: Clean arch across upper space */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none z-20"
+                viewBox="0 0 800 550"
+                fill="none"
+                preserveAspectRatio="xMidYMid slice"
+              >
+                <motion.path
+                  d="M 170 140 C 260 50, 390 50, 470 140"
+                  stroke="#0E382C"
+                  strokeWidth="2.5"
+                  strokeDasharray="5 5"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.6, delay: 0.5, ease: "easeInOut" }}
+                />
+              </svg>
+
+              {/* Handwritten script note above client */}
+              <div className="absolute top-4 sm:top-6 left-[6%] sm:left-[8%] z-30 font-handwriting text-base sm:text-lg text-[#0E382C] rotate-[-5deg] select-none">
+                From your home...
+              </div>
+
+              {/* Handwritten script note above partner card in foyer */}
+              <div className="absolute top-4 sm:top-6 left-[46%] sm:left-[50%] z-30 font-handwriting text-base sm:text-lg text-[#0E382C] rotate-[3deg] select-none hidden sm:block">
+                ...To new opportunities
+              </div>
+
+              {/* Client Micro-Card: AC Service (Placed in top-left shelf area, completely above the sofa) */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="absolute top-[16%] sm:top-[18%] left-[4%] sm:left-[6%] z-30 bg-white/95 backdrop-blur-md rounded-xl p-2 sm:p-2.5 border border-[#E8E4DA] shadow-md max-w-[170px] sm:max-w-[190px]"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] overflow-hidden shrink-0">
+                    <img src="/images/service-ac.jpg" alt="AC" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] sm:text-[11px] font-bold text-[#1B2620] truncate">AC Service</span>
+                      <span className="w-3.5 h-3.5 rounded-full bg-[#EBF1ED] flex items-center justify-center text-[#0E382C]">
+                        <ArrowRight size={7} />
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-[9px] text-[#526058]">
+                      <Star size={9} className="fill-[#C28E46] text-[#C28E46]" />
+                      <span className="font-bold text-[#1B2620]">4.8</span>
+                      <span>(330+)</span>
+                    </div>
+                    <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] font-semibold text-[#0E382C]">
+                      <span className="w-1 h-1 rounded-full bg-[#16A34A]"></span>
+                      Available today
                     </span>
-                    <span className="text-xs text-zinc-400">2 mins ago</span>
                   </div>
-                  <span className="text-base font-bold text-white">₹850</span>
                 </div>
-                <div className="space-y-1 mb-4">
-                  <h3 className="text-sm font-semibold text-white">Plumbing • Leakage Repair</h3>
-                  <p className="text-xs text-zinc-400 flex items-center gap-1.5">
-                    <span className="text-emerald-400">📍</span> 2.4 km away • Sector 14, Main Road
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <button className="py-2 px-3 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition-colors text-center">
-                    Accept Job
-                  </button>
-                  <button className="py-2 px-3 text-xs font-medium rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition-colors text-center">
-                    Decline
-                  </button>
-                </div>
-              </div>
+              </motion.div>
 
-              {/* Card 2: In-Progress Job with Photo Proof */}
-              <div className="bg-[#0F1623] border border-zinc-800 rounded-2xl p-5 shadow-xl shadow-black/40">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-400 animate-ping"></div>
-                    <span className="text-xs font-semibold text-blue-400">Service in Progress</span>
-                  </div>
-                  <span className="text-xs font-medium text-zinc-400">Timer: 34m</span>
-                </div>
-                <p className="text-sm font-semibold text-white mb-2">Electrical Panel Upgrade</p>
-                <div className="flex items-center justify-between text-xs text-zinc-400 bg-zinc-900/80 p-2.5 rounded-lg border border-zinc-800 mb-3">
-                  <span>Photo Proof: 2 uploaded</span>
-                  <span className="text-emerald-400 font-medium">✓ Ready to Complete</span>
-                </div>
-                <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 w-4/5 rounded-full"></div>
-                </div>
-              </div>
+              {/* Client Quote Badge (Placed in bottom-left corner below the couch, non-overlapping) */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="absolute bottom-3 sm:bottom-4 left-[4%] sm:left-[6%] z-30 bg-white/95 backdrop-blur-md rounded-xl px-3 py-2 border border-[#E8E4DA] shadow-sm max-w-[180px] sm:max-w-[200px]"
+              >
+                <p className="text-[10px] sm:text-[11px] font-medium text-[#1B2620] leading-snug">
+                  “Finally, a reliable professional!”
+                </p>
+                <p className="text-[9px] font-mono text-[#7E8C83] mt-0.5">
+                  — Priya, Agra
+                </p>
+              </motion.div>
 
-              {/* Card 3: Payout Snapshot */}
-              <div className="bg-[#0F1623] border border-zinc-800 rounded-xl p-4 flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-zinc-400">Today's Earnings</p>
-                  <p className="text-lg font-bold text-white">₹3,450</p>
-                </div>
-                <div className="text-right">
-                  <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-400 bg-emerald-950/40 px-2.5 py-1 rounded-full border border-emerald-500/20">
-                    <CheckCircle2 size={12} />
-                    Auto Payout Active
+              {/* Partner Micro-Card: Placed in the OPEN FOYER SPACE (left of the doorway, NOT covering the technician!) */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="absolute top-[20%] sm:top-[22%] left-[44%] sm:left-[48%] md:left-[50%] z-30 bg-white/95 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-[#E8E4DA] shadow-md max-w-[170px] sm:max-w-[190px]"
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-[#0E382C]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A] animate-pulse"></span>
+                    New Job
                   </span>
+                  <span className="text-[9px] font-mono text-[#7E8C83]">2.4 km away</span>
                 </div>
-              </div>
 
+                <h4 className="text-xs font-bold text-[#1B2620]">AC Repair</h4>
+                <div className="flex items-baseline gap-1 my-0.5">
+                  <span className="text-sm font-serif-display font-bold text-[#0E382C]">₹800</span>
+                  <span className="text-[8px] sm:text-[9px] text-[#7E8C83]">fixed fee</span>
+                </div>
+
+                <button
+                  onClick={onOpenPartnerModal}
+                  className="w-full mt-1.5 bg-[#0E382C] hover:bg-[#165342] text-white text-[10px] font-semibold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1 cursor-pointer shadow-xs"
+                >
+                  <span>Accept Job</span>
+                  <ArrowRight size={10} />
+                </button>
+              </motion.div>
             </div>
           </motion.div>
+
         </div>
-        
-        {/* Operational Workflow Bar */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-16 pt-8 border-t border-zinc-800/80 flex flex-wrap justify-center gap-x-8 gap-y-3"
-        >
-          {workflowFeatures.map((item, idx) => (
-            <div key={idx} className="flex items-center gap-2">
-              {item.icon}
-              <span className="text-zinc-300 text-xs sm:text-sm font-medium">{item.text}</span>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
