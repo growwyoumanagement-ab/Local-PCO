@@ -1,16 +1,44 @@
-# React + Vite
+# Local PCO — Informative Landing Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The public-facing marketing and onboarding website for **Local PCO**, connecting homeowners with verified local home service specialists.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- **Hero & Trust Strip**: Modern editorial layout highlighting core brand pillars and stats.
+- **Neighborhood Journey**: Interactive 5-step operational workflow walk-through.
+- **Client & Partner Ecosystem**: Split dual-journey view showing value propositions for clients and technicians.
+- **Interactive Modals**: Instant client booking request modal and service partner registration modal.
+- **Direct App Downloads**: One-tap direct downloads for standalone Android client and partner APKs.
+- **Admin Gateway**: Safe redirects to the Operations Command Center (`/admin`, `/login`).
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local Development
 
-## Expanding the ESLint configuration
+```bash
+# Install dependencies
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Start local development server (runs on port 5174)
+npm run dev
+
+# Run ESLint
+npm run lint
+
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+---
+
+## Deployment on Vercel
+
+The application is pre-configured with `vercel.json` for SPA rewrites, security headers, optimized CDN caching, and direct APK download handlers.
+
+For detailed deployment instructions via the Vercel Dashboard or CLI, please see:
+👉 **[VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)**
+

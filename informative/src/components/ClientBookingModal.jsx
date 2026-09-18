@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { X, CheckCircle2, ArrowRight, Download } from "lucide-react";
+import { X, CheckCircle2, ArrowRight, Download, ShieldCheck } from "lucide-react";
 
 export function ClientBookingModal({ isOpen, onClose, initialService }) {
   const [selectedService, setSelectedService] = useState(initialService?.title || "AC & Cooling");
