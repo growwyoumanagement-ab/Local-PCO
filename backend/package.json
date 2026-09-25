@@ -8,6 +8,7 @@
     "dev": "nodemon server.js",
     "seed:test": "node src/scripts/seedTestData.js",
     "seed:proper": "node src/scripts/seedProperData.js",
+    "seed:dev": "node src/scripts/seedDevComplete.js",
     "test:e2e": "node tests/run-all-tests.js",
     "test": "jest --runInBand --detectOpenHandles"
   },
