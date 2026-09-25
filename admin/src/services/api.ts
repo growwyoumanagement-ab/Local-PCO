@@ -1,7 +1,14 @@
 import axios, { type InternalAxiosRequestConfig } from 'axios';
 
-const PRIMARY_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000/api' : 'https://jayshree-pco.onrender.com/api');
-const FALLBACK_URL = import.meta.env.VITE_API_FALLBACK_URL || (import.meta.env.DEV ? 'http://localhost:5000/api' : 'https://jayshree-pco-5g5i.onrender.com/api'); // Backup Render service
+const normalizeBaseUrl = (url: string | undefined, fallback: string) => {
+    const raw = url?.trim() || fallback;
+    // Strip trailing /v1 or /v1/ so subsequent /v1/ endpoints don't duplicate to /v1/v1
+    return raw.replace(/\/v1\/?$/, '');
+};
+
+const PRIMARY_URL = normalizeBaseUrl(import.meta.env.VITE_API_URL, import.meta.env.DEV ? 'http://localhost:5000/api' : 'https://local-pco-backend.onrender.com/api');
+const FALLBACK_URL = normalizeBaseUrl(import.meta.env.VITE_API_FALLBACK_URL, import.meta.env.DEV ? 'http://localhost:5000/api' : 'https://local-pco-backend.onrender.com/api');
+
 
 // Tracks whether we've permanently switched to the fallback backend
 let usingFallback = false;
