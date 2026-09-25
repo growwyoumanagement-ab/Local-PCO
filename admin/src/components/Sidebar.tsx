@@ -25,7 +25,7 @@ export function Sidebar() {
     const location = useLocation();
 
     return (
-        <div className="flex flex-col h-[95vh] w-72 m-4 rounded-3xl bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-zinc-200 dark:border-white/5 shadow-2xl overflow-hidden relative transition-colors duration-500">
+        <div className="flex flex-col h-[95vh] w-72 m-4 rounded-3xl bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-zinc-200 dark:border-white/5 shadow-2xl overflow-hidden relative">
             {/* Top Accent Stripe */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 opacity-60"></div>
 

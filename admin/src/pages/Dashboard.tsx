@@ -27,7 +27,7 @@ export default function Dashboard() {
         }
     };
 
-    if (loading) {
+    if (loading && !stats) {
         return (
             <div className="flex items-center justify-center h-full p-10">
                 <div className="animate-spin h-8 w-8 border-4 border-violet-500 rounded-full border-t-transparent"></div>
@@ -36,7 +36,7 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+        <div className="space-y-8 animate-in fade-in duration-300">
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-2">
@@ -107,10 +107,10 @@ export default function Dashboard() {
                         <RecentVerificationsTable />
                     </div>
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-3 min-w-0">
                     <div 
                         onClick={() => navigate("/bookings")}
-                        className="bg-white/60 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-2xl h-full flex flex-col relative overflow-hidden cursor-pointer hover:border-violet-500/30 transition-all duration-300"
+                        className="bg-white/60 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200 dark:border-white/5 rounded-3xl p-6 shadow-sm dark:shadow-2xl h-full flex flex-col relative overflow-hidden cursor-pointer hover:border-violet-500/30 transition-all duration-300 min-w-0"
                     >
                         {/* Glow Gradient (Dark Mode Only) */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-violet-600/10 blur-[80px] rounded-full pointer-events-none opacity-0 dark:opacity-100"></div>
@@ -122,7 +122,7 @@ export default function Dashboard() {
                             </h3>
                             <p className="text-sm text-zinc-500">Real-time status distribution</p>
                         </div>
-                        <div className="flex-1 flex items-center justify-center relative z-10">
+                        <div className="flex-1 w-full min-w-0 flex items-center justify-center relative z-10">
                             <BookingStatusChart data={stats?.bookingStatusDistribution} />
                         </div>
                     </div>

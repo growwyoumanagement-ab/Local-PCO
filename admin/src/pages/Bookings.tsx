@@ -299,7 +299,7 @@ export default function Bookings() {
     const isDateFiltered = Boolean(appliedStartDate || appliedEndDate);
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+        <div className="space-y-8 animate-in fade-in duration-200">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white/60 dark:bg-zinc-900/40 backdrop-blur-md p-6 rounded-3xl border border-zinc-200 dark:border-white/5 shadow-sm dark:shadow-2xl relative overflow-hidden gap-4">
                 <div className="relative z-10">
                     <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-3">

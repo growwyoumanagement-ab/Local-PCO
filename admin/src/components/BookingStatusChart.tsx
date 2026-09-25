@@ -21,8 +21,8 @@ export function BookingStatusChart({ data = [] }: BookingStatusChartProps) {
     const chartData = data.length > 0 ? data : defaultData;
 
     return (
-        <div className="h-[300px] w-full mt-4">
-            <ResponsiveContainer width="100%" height="100%">
+        <div className="h-[300px] w-full min-w-0 mt-4 relative">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                 <PieChart>
                     <Pie
                         data={chartData}

@@ -483,7 +483,7 @@ export default function Partners() {
     ], [sortBy, sortOrder]);
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+        <div className="space-y-8 animate-in fade-in duration-200">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white/60 dark:bg-zinc-900/40 backdrop-blur-md p-6 rounded-3xl border border-zinc-200 dark:border-white/5 shadow-sm dark:shadow-2xl relative overflow-hidden group gap-4">
                 <div className="absolute inset-0 bg-gradient-to-r from-violet-600/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10 w-full flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">

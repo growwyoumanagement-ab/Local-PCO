@@ -49,7 +49,7 @@ export function RecentVerificationsTable() {
 
     if (loading) {
         return (
-            <div className="p-6 text-center text-zinc-500 text-sm flex items-center justify-center">
+            <div className="p-6 min-h-[140px] text-center text-zinc-500 text-sm flex items-center justify-center">
                 <div className="animate-spin h-5 w-5 border-2 border-violet-500/30 border-t-violet-600 rounded-full"></div>
                 <span className="ml-2">Loading history...</span>
             </div>
