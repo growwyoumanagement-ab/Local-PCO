@@ -15,7 +15,7 @@ async function sendPasswordResetEmail(to, otp, name = 'User') {
     const smtpPort = parseInt(process.env.SMTP_PORT || '587', 10);
     const smtpUser = process.env.SMTP_USER;
     const smtpPass = process.env.SMTP_PASS;
-    const fromEmail = process.env.FROM_EMAIL || `"Local PCO" <${smtpUser || 'noreply@localpco.com'}>`;
+    const fromEmail = process.env.MAIL_FROM || process.env.FROM_EMAIL || `"Local PCO" <${smtpUser || 'noreply@localpco.com'}>`;
 
     const htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;">
