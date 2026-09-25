@@ -182,7 +182,7 @@ async function seedData(connectionDescription) {
             name: 'Local PCO Admin',
             phone: '7017669405',
             email: 'admin@localpco.com',
-            plainPassword: 'jayshri1234',
+            plainPassword: 'Admin@1234',
             role: 'admin',
             isBlocked: false
         },
@@ -190,7 +190,7 @@ async function seedData(connectionDescription) {
             name: 'Operations Admin',
             phone: '9876543210',
             email: 'operations@localpco.com',
-            plainPassword: 'Admin@1234',
+            plainPassword: 'Ops@1234',
             role: 'admin',
             isBlocked: false
         },

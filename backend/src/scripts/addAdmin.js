@@ -5,7 +5,7 @@ const devUri = "mongodb+srv://growwyouteam_db_user:asdf1234@jayshreepco.2yrgsje.
 const prodClusterUri = "mongodb+srv://growwyoumanagement_db_user:jUnuSGKXaC1YNZcE@jayshreepco.1wfs27v.mongodb.net/?appName=JayshreePCO";
 
 const TARGET_PHONE = "7017669405";
-const TARGET_PASSWORD = "jayshri1234";
+const TARGET_PASSWORD = "Admin@1234";
 
 async function addAdminToConnection(conn, dbDescription) {
     console.log(`\n---------------------------------------------`);

@@ -8,27 +8,39 @@ const { sendOTP } = require('../utils/smsHelper');
 const { sendPasswordResetEmail } = require('../utils/emailService');
 
 
-// @desc    Login client with phone and password
+// @desc    Login client / admin with email or phone and password
 // @route   POST /api/v1/auth/client/login
 // @access  Public
 const authClient = async (req, res) => {
-    const { phone, password } = req.body;
+    const { phone, email, identifier, password } = req.body;
 
     try {
-        if (!phone || !password) {
-            return res.status(400).json({ success: false, message: 'Please provide phone and password' });
+        const loginIdentifier = email || phone || identifier;
+        if (!loginIdentifier || !password) {
+            return res.status(400).json({ success: false, message: 'Please provide email or phone and password' });
         }
 
-        const normalizedPhone = String(phone).replace(/\D/g, '').slice(-10);
-        const user = await User.findOne({ phone: normalizedPhone }).select('+password');
+        let user;
+        const isEmail = Boolean(email) || (typeof loginIdentifier === 'string' && loginIdentifier.includes('@'));
 
-        if (!user) {
-            // Check if it's a partner trying to use the client app
-            const isPartner = await Partner.findOne({ phone: normalizedPhone });
-            if (isPartner) {
-                return res.status(403).json({ success: false, message: 'This number is registered as a Partner. Please use the Partner app.' });
+        if (isEmail) {
+            const normalizedEmail = (email || loginIdentifier).trim().toLowerCase();
+            user = await User.findOne({ email: normalizedEmail }).select('+password');
+            if (!user) {
+                return res.status(404).json({ success: false, message: 'Account not found with this email. Please check your credentials.' });
             }
-            return res.status(404).json({ success: false, message: 'Account not found. Please register.' });
+        } else {
+            const normalizedPhone = String(phone || loginIdentifier).replace(/\D/g, '').slice(-10);
+            user = await User.findOne({ phone: normalizedPhone }).select('+password');
+
+            if (!user) {
+                // Check if it's a partner trying to use the client app
+                const isPartner = await Partner.findOne({ phone: normalizedPhone });
+                if (isPartner) {
+                    return res.status(403).json({ success: false, message: 'This number is registered as a Partner. Please use the Partner app.' });
+                }
+                return res.status(404).json({ success: false, message: 'Account not found. Please register.' });
+            }
         }
 
         if (user.isBlocked) {
@@ -47,6 +59,7 @@ const authClient = async (req, res) => {
                     _id: user._id,
                     name: user.name,
                     phone: user.phone,
+                    email: user.email,
                     role: user.role,
                     avatar: user.avatar || null,
                     accessToken,
