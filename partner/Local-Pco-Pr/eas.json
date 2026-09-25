@@ -1,0 +1,55 @@
+{
+  "cli": {
+    "version": ">= 3.0.0",
+    "requireCommit": false
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "API_BASE_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "APP_ENV": "preview",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "API_BASE_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "APP_ENV": "production",
+        "CLOUDINARY_CLOUD_NAME": "dblwchjfg",
+        "CLOUDINARY_API_KEY": "859883225627113",
+        "CLOUDINARY_API_SECRET": "UblOBQmr2cCIZo0E_KyNUJZ3nio",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true"
+      }
+    },
+    "production-aab": {
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "API_BASE_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "APP_ENV": "production",
+        "CLOUDINARY_CLOUD_NAME": "dblwchjfg",
+        "CLOUDINARY_API_KEY": "859883225627113",
+        "CLOUDINARY_API_SECRET": "UblOBQmr2cCIZo0E_KyNUJZ3nio",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

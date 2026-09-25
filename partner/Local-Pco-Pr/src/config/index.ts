@@ -13,8 +13,8 @@ const LOCAL_IP = getLocalHost();
 
 export const CONFIG = {
     API_URLS: {
-        PROD: process.env.EXPO_PUBLIC_API_URL || 'https://jayshree-pco.onrender.com/api/v1',
-        FALLBACK: process.env.EXPO_PUBLIC_API_FALLBACK_URL || 'https://jayshree-pco-5g5i.onrender.com/api/v1',
+        PROD: process.env.EXPO_PUBLIC_API_URL || 'https://local-pco-backend.onrender.com/api/v1',
+        FALLBACK: process.env.EXPO_PUBLIC_API_FALLBACK_URL || 'https://local-pco-backend.onrender.com/api/v1',
         DEV: `http://${LOCAL_IP}:5000/api/v1`,
     },
     TIMEOUT: 30000,

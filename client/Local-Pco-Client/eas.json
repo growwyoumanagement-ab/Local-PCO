@@ -1,0 +1,52 @@
+{
+  "cli": {
+    "version": ">= 3.0.0",
+    "requireCommit": false
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "API_BASE_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "APP_ENV": "preview",
+        "GOOGLE_MAPS_API_KEY": "AIzaSyDT-WL_Mra97by-7R7O44ASb4oCyS8Ak7A",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "API_BASE_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "APP_ENV": "production",
+        "GOOGLE_MAPS_API_KEY": "AIzaSyDT-WL_Mra97by-7R7O44ASb4oCyS8Ak7A",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true"
+      }
+    },
+    "production-aab": {
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "API_BASE_URL": "https://local-pco-backend.onrender.com/api/v1",
+        "APP_ENV": "production",
+        "GOOGLE_MAPS_API_KEY": "AIzaSyDT-WL_Mra97by-7R7O44ASb4oCyS8Ak7A",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "name": "client-app",
+  "name": "local-pco-client",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~6.1.2",
-    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/datetimepicker": "8.4.4",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
@@ -21,7 +21,7 @@
     "@sentry/react-native": "^8.18.0",
     "axios": "^1.6.2",
     "expo": "~54.0.37",
-    "expo-build-properties": "^57.0.3",
+    "expo-build-properties": "^1.0.10",
     "expo-image-picker": "~17.0.11",
     "expo-location": "~19.0.8",
     "expo-screen-capture": "~8.0.10",
@@ -45,6 +45,13 @@
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3"
+  },
+  "expo": {
+    "install": {
+      "exclude": [
+        "@sentry/react-native"
+      ]
+    }
   },
   "private": true
 }
